@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SportTogether</string>
+    <string name="log_in">Iniciar Sesión</string>
+    <string name="sign_up">Registrate</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="welcome">¡Bienvenido a SportTogether</string>
+</resources>

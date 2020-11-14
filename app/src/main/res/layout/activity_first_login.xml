@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_color">
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toTopOf="@+id/h_slide1guideline01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_slide1guideline01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_slide1guideline02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_slide1guideline01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <TextView
+        android:id="@+id/welcomeUsernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView" />
+
+    <TextView
+        android:id="@+id/welcomeTextView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Por favor, complete su perfil:"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeUsernameTextView" />
+
+    <EditText
+        android:id="@+id/nombreEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView2" />
+
+    <EditText
+        android:id="@+id/apellidoEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Apellidos"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toBottomOf="@+id/nombreEditText" />
+
+    <EditText
+        android:id="@+id/edadEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Edad"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toBottomOf="@+id/apellidoEditText" />
+
+    <Button
+        android:id="@+id/completarPerfilButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Completar Perfil"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toBottomOf="@+id/edadEditText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
