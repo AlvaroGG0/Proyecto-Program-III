@@ -6,4 +6,8 @@
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="welcome">¡Bienvenido a SportTogether</string>
+    <string name="tennis">Tenis</string>
+    <string name="paddle">Pádel</string>
+    <string name="football">Fútbol</string>
+    <string name="basketball">Baloncesto</string>
 </resources>

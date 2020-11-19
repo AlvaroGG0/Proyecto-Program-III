@@ -1,23 +1,20 @@
-package com.example.sporttogether;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.sporttogether.ui.activities;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.sporttogether.R;
 import com.example.sporttogether.database.Database;
 
 public class MainActivity extends AppCompatActivity {
 
     private VideoView bgVideoView;
-    private Button logInButton;
-    private Button singUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +29,13 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bgvideo);
         bgVideoView.setVideoURI(uri);
         bgVideoView.start();
-        bgVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
+        bgVideoView.setOnPreparedListener(mp -> mp.setLooping(true));
 
-        logInButton = (Button) findViewById(R.id.login_button);
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLogInActivity();
-            }
-        });
+        Button logInButton = (Button) findViewById(R.id.login_button);
+        logInButton.setOnClickListener(v -> openLogInActivity());
 
-        singUpButton = (Button) findViewById(R.id.signup_button);
-        singUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSignUpActivity();
-            }
-        });
+        Button singUpButton = (Button) findViewById(R.id.signup_button);
+        singUpButton.setOnClickListener(v -> openSignUpActivity());
 
     }
 
@@ -61,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         bgVideoView.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Database.endConnection();
+        Toast.makeText(getBaseContext(), "Desconectado de la base de datos",
+                Toast.LENGTH_LONG).show();
     }
 
     public void openLogInActivity(){

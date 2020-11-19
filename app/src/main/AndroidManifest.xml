@@ -8,14 +8,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportTogether">
-        <activity android:name=".MatchesMainActivity"></activity>
-        <activity android:name=".FirstLoginActivity" />
-        <activity android:name=".SingUpActivity" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activities.MatchesMainActivity" />
+        <activity android:name=".ui.activities.FirstLoginActivity" />
+        <activity android:name=".ui.activities.SingUpActivity" />
+        <activity android:name=".ui.activities.LogInActivity" />
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

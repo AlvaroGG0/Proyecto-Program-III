@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.FootballFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="96dp"
+            android:text="Número jugadores:"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toStartOf="@+id/radioGroupJugadores"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="80dp"
+            android:text="Número de sets:"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toStartOf="@+id/radioGroupSets"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/etPlannedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="168dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Fecha"
+            android:inputType="date"
+            android:maxLines="1"
+            android:textColorHint="@color/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/etPlannedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Hora"
+            android:inputType="date"
+            android:maxLines="1"
+            android:textColorHint="@color/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPlannedDate" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupSets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupJugadores">
+
+            <RadioButton
+                android:id="@+id/radioButtonMejor3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mejor de 3" />
+
+            <RadioButton
+                android:id="@+id/radioButtonMejor5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mejor de 5" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radioGroupJugadores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioButtonIndividual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Individual" />
+
+            <RadioButton
+                android:id="@+id/radioButtonDobles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dobles" />
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

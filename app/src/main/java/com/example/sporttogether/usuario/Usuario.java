@@ -1,29 +1,41 @@
 package com.example.sporttogether.usuario;
 
+/**
+ * Clase usuario para la gestión de los usuarios de la bd.
+ */
 public class Usuario {
 	
 	private String username;
-	private String password;
 	private String nombre;
 	private String apellidos;
 	private int edad;
 	private int admin;
 	private int firstLogin;
-	
+
+	/**
+	 * Constructor vacío
+	 */
 	public Usuario() {
 		super();
 	}
-	
-	public Usuario(String username, String password) {
+
+	public Usuario(String username){
 		super();
-		this.username = username;
-		this.password = password;
+		this.username=username;
 	}
 
-	public Usuario(String username, String password, String nombre, String apellidos, int edad, int admin, int firstLogin) {
+	/**
+	 * Constructor completo utilizado en el método GetUserInfo() de la clase Database
+	 * @param username username del usuario
+	 * @param nombre nombre del usuario
+	 * @param apellidos apellidos del usuario
+	 * @param edad edad del usuario
+	 * @param admin tipo de usuario
+	 * @param firstLogin primer login del usuario
+	 */
+	public Usuario(String username, String nombre, String apellidos, int edad, int admin, int firstLogin) {
 		super();
 		this.username = username;
-		this.password = password;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.edad = edad;
@@ -35,17 +47,7 @@ public class Usuario {
 		return username;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	public void setUsername(String username) { this.username = username; }
 
 	public String getNombre() {
 		return nombre;
@@ -71,7 +73,7 @@ public class Usuario {
 		this.edad = edad;
 	}
 
-	public int isAdmin() {
+	public int getAdmin() {
 		return admin;
 	}
 
@@ -87,7 +89,4 @@ public class Usuario {
 		this.firstLogin = firstLogin;
 	}
 
-	
-
-	
 }

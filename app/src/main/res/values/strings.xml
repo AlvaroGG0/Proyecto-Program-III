@@ -5,4 +5,15 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="welcome">¡Welcome to SportTogether</string>
+
+    <string name="tennis">Tennis</string>
+    <string name="paddle">Paddle</string>
+    <string name="football">Football</string>
+    <string name="basketball">Basketball</string>
+    <string-array name="sports_array">
+        <item name="tennis">@string/tennis</item>
+        <item name="paddle">@string/paddle</item>
+        <item name="football">@string/football</item>
+        <item name="basketball">@string/basketball</item>
+    </string-array>
 </resources>
