@@ -23,17 +23,19 @@
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
-                android:layout_height="91dp"
+                android:layout_height="70dp"
+                android:background="#FFFFFF"
                 app:srcCompat="@drawable/nombre1" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
+
+
         android:layout_height="match_parent"
-
-
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,17 +43,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAnimals"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="396dp"
+                android:layout_height="52dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.nshmura.recyclertablayout.RecyclerTabLayout
+                    android:id="@+id/recycler_tab_layout"
+                    rtl_tabBackground="?attr/selectableItemBackground"
+                    rtl_tabIndicatorColor="?attr/colorAccent"
+                    rtl_tabIndicatorHeight="10dp"
+                    rtl_tabOnScreenLimit="5"
+                    rtl_tabPadding="50dp"
+                    rtl_tabSelectedTextColor="?android:textColorPrimary"
+                    rtl_tabTextAppearance="@android:style/TextAppearance.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="410dp"
+                android:layout_height="623dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/createMatchButton"

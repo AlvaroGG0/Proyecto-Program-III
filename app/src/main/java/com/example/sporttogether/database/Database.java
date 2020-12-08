@@ -171,19 +171,20 @@ public class Database extends SQLiteAssetHelper {
 	}
 
 	/**
-	 * Método que devuelve todos los partidos almacenados en la base de datos.
+	 * Método que devuelve todos los partidos almacenados en la base de datos según la fecha.
+	 * @param date String de la fecha en formato "YYYY-MM-DD"
 	 * @return Devuelve un ArrayList con los partidos.
 	 */
-	public static ArrayList<Partido> getMatches() {
-		String sql = "SELECT * FROM partidos";
+	public static ArrayList<Partido> getDateMatches(String date) {
+		String sql = "SELECT * FROM partidos WHERE datetime LIKE '" + date +"%'";
 		ArrayList<Partido> partidos = new ArrayList<>();
 
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
 
 			ResultSet rs  = pstmt.executeQuery();
 			while (rs.next()) {
-				LocalDateTime date = LocalDateTime.parse(rs.getString("datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
-				Partido partido = new Partido(rs.getInt("idpartido"), date, rs.getInt("iddeporte"),
+				LocalDateTime localDate = LocalDateTime.parse(rs.getString("datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+				Partido partido = new Partido(rs.getInt("idpartido"), localDate, rs.getInt("iddeporte"),
 						rs.getString("equipo1").split(", "), rs.getString("equipo2").split(", "),
 						rs.getString("resultado").split(", "), rs.getInt("equipoganador"));
 				partidos.add(partido);
