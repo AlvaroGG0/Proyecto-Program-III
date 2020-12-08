@@ -5,18 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/primary_color">
 
-    <TextView
-        android:id="@+id/welcomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
-        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
-        app:layout_constraintTop_toTopOf="@+id/h_slide1guideline01" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/v_slide1guideline01"
         android:layout_width="wrap_content"
@@ -37,6 +25,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/v_slide1guideline02"
+        app:layout_constraintStart_toStartOf="@+id/v_slide1guideline01"
+        app:layout_constraintTop_toTopOf="@+id/h_slide1guideline01" />
 
     <TextView
         android:id="@+id/welcomeUsernameTextView"

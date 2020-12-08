@@ -15,26 +15,35 @@ import com.example.sporttogether.partido.Partido;
 import java.util.List;
 
 public class MatchesMainRecyclerAdapter extends
-        RecyclerView.Adapter<MatchesMainRecyclerAdapter.ViewHolder> {
+        RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
-        public TextView nameTextView;
+    static class TennisViewHolder extends RecyclerView.ViewHolder {
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
+        private final TextView dateTextView;
+
+        TennisViewHolder(@NonNull View itemView) {
             super(itemView);
+            dateTextView = (TextView) itemView.findViewById(R.id.datetime_textview);
+        }
 
-            nameTextView = (TextView) itemView.findViewById(R.id.tvAnimalName);
+        private void setTennisDetails(Partido partido) {
+            dateTextView.setText(partido.getDatetime().toLocalTime().toString());
         }
     }
+    static class FootballViewHolder extends RecyclerView.ViewHolder {
 
+        private final TextView dateTextView;
+
+        FootballViewHolder(@NonNull View itemView) {
+            super(itemView);
+            dateTextView = (TextView) itemView.findViewById(R.id.datetime_textview);
+        }
+
+        private void setFootballDetails(Partido partido) {
+            dateTextView.setText(partido.getDatetime().toLocalTime().toString());
+        }
+    }
+    
     private final List<Partido> partidos;
 
     public MatchesMainRecyclerAdapter(List<Partido> partidos){
@@ -43,25 +52,28 @@ public class MatchesMainRecyclerAdapter extends
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        View view;
 
-        // Inflate the custom layout
-        View matchesView = inflater.inflate(R.layout.activity_matches_row, parent, false);
+        if (viewType == 0) {
+            view = LayoutInflater.from(context).inflate(R.layout.row_matches_tennis, parent, false);
+            return new TennisViewHolder(view);
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.row_matches_football, parent, false);
+            return new FootballViewHolder(view);
+        }
 
-        // Return a new holder instance
-        return new ViewHolder(matchesView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Get the data model based on position
-        Partido partido = partidos.get(position);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        // Set item views based on your views and data model
-        TextView textView = holder.nameTextView;
-        textView.setText(Integer.toString(partido.getIdDeporte()));
+        if (getItemViewType(position) == 0) {
+            ((TennisViewHolder) holder).setTennisDetails(partidos.get(position));
+        } else {
+            ((FootballViewHolder) holder).setFootballDetails(partidos.get(position));
+        }
 
     }
 
@@ -69,4 +81,15 @@ public class MatchesMainRecyclerAdapter extends
     public int getItemCount() {
         return partidos.size();
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (partidos.get(position).getIdDeporte() == 0) {
+            return 0;
+        } else {
+            return 2;
+        }
+    }
 }
+
+
