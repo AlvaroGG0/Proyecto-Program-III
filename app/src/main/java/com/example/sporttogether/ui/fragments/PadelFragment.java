@@ -72,6 +72,6 @@ public class PadelFragment extends Fragment implements View.OnClickListener {
             sets=5;
         }
 
-        return new Partido(LDateTime, 0, new String[2], new String[2], new String[sets]);
+        return new Partido(LDateTime, 1, new String[2], new String[2], new String[sets]);
     }
 }

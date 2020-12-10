@@ -131,7 +131,7 @@ public class Database extends SQLiteAssetHelper {
 			while(rs.next()){
 				usuario = new Usuario(rs.getString("username"),
 						rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("edad"),
-						rs.getInt("admin"), rs.getInt("firstlogin"));
+						rs.getInt("firstlogin"));
 			}
 			return usuario;
 
@@ -215,6 +215,19 @@ public class Database extends SQLiteAssetHelper {
 			pstmt.executeUpdate();
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
+		}
+	}
+
+	public static void deleteMatch(int idPartido){
+		String sql = "DELETE FROM Partidos WHERE idpartido = ?";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setInt(1, idPartido);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

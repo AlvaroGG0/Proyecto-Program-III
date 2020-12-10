@@ -1,12 +1,14 @@
 package com.example.sporttogether.ui.activities;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.sporttogether.R;
 import com.example.sporttogether.ui.adapters.MatchesMainPagerAdapter;
+import com.example.sporttogether.ui.adapters.MatchesMainRecyclerAdapter;
 import com.example.sporttogether.ui.dialogs.CreateMatchDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nshmura.recyclertablayout.RecyclerTabLayout;
@@ -38,14 +40,20 @@ public class MatchesMainActivity extends AppCompatActivity {
         initialDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         for (LocalDate date = startDate; date.isBefore(endDate); date=date.plusDays(1)) {
-            items.add(String.valueOf(date));
+            if (date.equals(initialDate)){
+                items.add(getString(R.string.today));
+                continue;
+            }else if (date.equals(initialDate.plusDays(1))){
+                items.add(getString(R.string.tomorrow));
+                continue;
+            }else if (date.equals(initialDate.minusDays(1))){
+                items.add(getString(R.string.yesterday));
+                continue;
+            }else{
+                items.add(String.valueOf(date));
+            }
         }
-    }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         MatchesMainPagerAdapter adapter = new MatchesMainPagerAdapter();
         adapter.addAll(items);
 

@@ -121,4 +121,19 @@ public class Partido {
 		this.equipoGanador = equipoGanador;
 	}
 
+	public int[] getPlazasOcupadas(){
+		int plazasOcupadasEquipo1 = 0;
+		int plazasOcupadasEquipo2 = 0;
+		for (String usuario: equipo1) {
+			if (!usuario.equals("null")){
+				plazasOcupadasEquipo1++;
+			}
+		}
+		for (String usuario: equipo2) {
+			if (!usuario.equals("null")){
+				plazasOcupadasEquipo2++;
+			}
+		}
+		return new int[] {plazasOcupadasEquipo1, plazasOcupadasEquipo2};
+	}
 }

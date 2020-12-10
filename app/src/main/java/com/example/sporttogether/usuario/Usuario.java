@@ -9,7 +9,6 @@ public class Usuario {
 	private String nombre;
 	private String apellidos;
 	private int edad;
-	private int admin;
 	private int firstLogin;
 
 	/**
@@ -30,16 +29,14 @@ public class Usuario {
 	 * @param nombre nombre del usuario
 	 * @param apellidos apellidos del usuario
 	 * @param edad edad del usuario
-	 * @param admin tipo de usuario
 	 * @param firstLogin primer login del usuario
 	 */
-	public Usuario(String username, String nombre, String apellidos, int edad, int admin, int firstLogin) {
+	public Usuario(String username, String nombre, String apellidos, int edad, int firstLogin) {
 		super();
 		this.username = username;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.edad = edad;
-		this.admin = admin;
 		this.firstLogin = firstLogin;
 	}
 
@@ -71,14 +68,6 @@ public class Usuario {
 
 	public void setEdad(int edad) {
 		this.edad = edad;
-	}
-
-	public int getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(int admin) {
-		this.admin = admin;
 	}
 
 	public int getFirstLogin() {
