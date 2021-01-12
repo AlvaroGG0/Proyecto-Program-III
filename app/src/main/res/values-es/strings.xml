@@ -10,4 +10,13 @@
     <string name="paddle">Pádel</string>
     <string name="football">Fútbol</string>
     <string name="basketball">Baloncesto</string>
+    <string name="complete_profile">Por favor, complete su perfil</string>
+    <string name="name">Nombre</string>
+    <string name="surname">Apellidos</string>
+    <string name="age">Edad</string>
+    <string name="complete_profile_button">Completar Perfil</string>
+    <string name="delete">Eliminar</string>
+    <string name="today">Hoy</string>
+    <string name="tomorrow">Mañana</string>
+    <string name="yesterday">Ayer</string>
 </resources>

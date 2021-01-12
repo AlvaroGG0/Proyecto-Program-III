@@ -75,6 +75,8 @@
         android:id="@+id/returnImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toTopOf="@+id/h_loginguideline02"
         app:layout_constraintEnd_toStartOf="@+id/v_loginguideline02"
         app:layout_constraintStart_toStartOf="@+id/v_loginguideline01"

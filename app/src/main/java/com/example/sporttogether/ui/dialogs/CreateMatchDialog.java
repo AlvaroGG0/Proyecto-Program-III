@@ -24,6 +24,8 @@ import com.example.sporttogether.ui.fragments.FootballFragment;
 import com.example.sporttogether.ui.fragments.PadelFragment;
 import com.example.sporttogether.ui.fragments.TennisFragment;
 
+import java.util.Objects;
+
 public class CreateMatchDialog extends DialogFragment {
 
     private Toolbar toolbar;
@@ -127,7 +129,7 @@ public class CreateMatchDialog extends DialogFragment {
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-        getActivity().recreate();
+        Objects.requireNonNull(getActivity()).recreate();
     }
 }
 

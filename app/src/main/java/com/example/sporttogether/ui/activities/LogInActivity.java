@@ -36,8 +36,6 @@ public class LogInActivity extends AppCompatActivity {
                 LogInActivity.super.finish();
                 if (usuario.getFirstLogin()==1){
                     openFirstLoginActivity();
-                }else{
-                    Toast.makeText(getBaseContext(), "¡Pa'dentro!", Toast.LENGTH_LONG).show();
                 }
             }else{
                 Toast.makeText(getBaseContext(), "El usuario no existe",
