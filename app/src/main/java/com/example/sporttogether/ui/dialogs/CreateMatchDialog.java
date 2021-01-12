@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -16,9 +17,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.sporttogether.R;
-import com.example.sporttogether.database.Database;
-import com.example.sporttogether.ui.activities.LogInActivity;
-import com.example.sporttogether.ui.activities.MatchesMainActivity;
+import com.example.sporttogether.ui.fragments.BaseCreateMatchFragment;
 import com.example.sporttogether.ui.fragments.BasketballFragment;
 import com.example.sporttogether.ui.fragments.FootballFragment;
 import com.example.sporttogether.ui.fragments.PadelFragment;
@@ -65,54 +64,46 @@ public class CreateMatchDialog extends DialogFragment {
         toolbar.setNavigationOnClickListener(v -> dismiss());
         toolbar.inflateMenu(R.menu.dialog_menu);
 
+        final BaseCreateMatchFragment[] baseCreateMatchFragment = {new BaseCreateMatchFragment()};
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        TennisFragment tennisFragment = new TennisFragment();
-                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, tennisFragment).commit();
-                        toolbar.setOnMenuItemClickListener(item -> {
-                            Database.createMatch(LogInActivity.usuario, tennisFragment.getTennisMatch());
-                            dismiss();
-                            return true;
-                        });
+                        baseCreateMatchFragment[0] = new TennisFragment();
+                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, baseCreateMatchFragment[0]).commit();
                         break;
                     case 1:
-                        PadelFragment padelFragment = new PadelFragment();
-                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, padelFragment).commit();
-                        toolbar.setOnMenuItemClickListener(item -> {
-                            Database.createMatch(LogInActivity.usuario, padelFragment.getPaddelMatch());
-                            dismiss();
-                            return true;
-                        });
+                        baseCreateMatchFragment[0] = new PadelFragment();
+                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, baseCreateMatchFragment[0]).commit();
                         break;
                     case 2:
-                        FootballFragment footballFragment = new FootballFragment();
-                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, footballFragment).commit();
-                        toolbar.setOnMenuItemClickListener(item -> {
-                            Database.createMatch(LogInActivity.usuario, footballFragment.getFootballMatch());
-                            dismiss();
-                            return true;
-                        });
+                        baseCreateMatchFragment[0] = new FootballFragment();
+                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, baseCreateMatchFragment[0]).commit();
                         break;
                     case 3:
-                        BasketballFragment basketballFragment = new BasketballFragment();
-                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, basketballFragment).commit();
-                        toolbar.setOnMenuItemClickListener(item -> {
-                            Database.createMatch(LogInActivity.usuario, basketballFragment.getBasketballMatch());
-                            dismiss();
-                            return true;
-                        });
+                        baseCreateMatchFragment[0] = new BasketballFragment();
+                        getChildFragmentManager().beginTransaction().replace(R.id.fragment, baseCreateMatchFragment[0]).commit();
                         break;
                 }
+                toolbar.setOnMenuItemClickListener(item -> {
+                    try {
+                        baseCreateMatchFragment[0].createMatch();
+                        dismiss();
+                        return true;
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), R.string.create_match_data_error, Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                });
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+
     }
 
     @Override
