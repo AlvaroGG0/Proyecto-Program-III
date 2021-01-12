@@ -88,6 +88,32 @@ public class Database extends SQLiteAssetHelper {
 	}
 
 	/**
+	 * Comprueba si el usuario insertado para el registro ya existe o no
+	 * @param username username del usuario
+	 * @return True si el usuario existe, en caso contrario False
+	 */
+
+	public static boolean verifyRegisterUser(String username) {
+		String sql = "SELECT count(*) "
+				+ "FROM usuarios WHERE username = ?";
+		boolean exists = false;
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+			pstmt.setString(1, username);
+			ResultSet rs  = pstmt.executeQuery();
+			while(rs.next()) {
+				exists = rs.getBoolean(1);
+			}
+			return exists;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+
+	/**
 	 * Comprueba si las credenciales insertadas son correctas
 	 * @param username username del usuario
 	 * @param password contraseña insertada

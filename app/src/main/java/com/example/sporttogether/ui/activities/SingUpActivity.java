@@ -1,9 +1,14 @@
 package com.example.sporttogether.ui.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,21 +20,77 @@ public class SingUpActivity extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
+    private TextView userExists;
+    private Button singupButton;
+    private ImageView returnSign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
 
-        username = (EditText) findViewById(R.id.editText_username);
-        password = (EditText) findViewById(R.id.editText_password);
-        Button singupButton = (Button) findViewById(R.id.login_button1);
-        ImageView returnSign = (ImageView) findViewById(R.id.returnImage);
+        username = findViewById(R.id.editText_username);
+        password = findViewById(R.id.editText_password);
+        userExists = findViewById(R.id.user_exists);
+        singupButton = findViewById(R.id.login_button1);
+        returnSign = findViewById(R.id.returnImage);
 
         singupButton.setOnClickListener(v -> {
-            Database.registerNewUser(username.getText().toString(), password.getText().toString());
-            Toast.makeText(getBaseContext(), "Usuario " + username.getText().toString() + " registrado",
-                    Toast.LENGTH_LONG).show();
+            if (username.getText().toString().isEmpty()){
+                username.setHint(R.string.username);
+                username.setHintTextColor(Color.parseColor("#FB1100"));
+            }if (password.getText().toString().isEmpty()){
+                password.setHint(R.string.password);
+                password.setHintTextColor(Color.parseColor("#FB1100"));
+            }else {
+                if (userExists.getVisibility() == View.VISIBLE){
+                    Toast.makeText(getBaseContext(), "El usuario ya existe", Toast.LENGTH_LONG).show();
+                }else{
+                    Database.registerNewUser(username.getText().toString(), password.getText().toString());
+                    Toast.makeText(getBaseContext(), "Usuario " + username.getText().toString() + " registrado",
+                            Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+        });
+
+        username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (username.getCurrentHintTextColor() == Color.parseColor("#FB1100")){
+                    username.setHintTextColor(Color.parseColor("#32FFFFFF"));
+                }
+                if (Database.verifyRegisterUser(username.getText().toString())){
+                    userExists.setVisibility(View.VISIBLE);
+                }else{
+                    userExists.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (password.getCurrentHintTextColor() == Color.parseColor("#FB1100")){
+                    password.setHintTextColor(Color.parseColor("#32FFFFFF"));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         returnSign.setOnClickListener(v -> finish());

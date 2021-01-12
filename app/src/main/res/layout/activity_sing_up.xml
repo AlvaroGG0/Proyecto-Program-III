@@ -107,6 +107,19 @@
         app:layout_constraintTop_toTopOf="@+id/h_loginguideline03" />
 
     <TextView
+        android:id="@+id/user_exists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/user_exists"
+        android:textColor="#F44336"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/editText_username"
+        app:layout_constraintTop_toTopOf="@+id/h_loginguideline03" />
+
+    <TextView
         android:id="@+id/textView_password"
         android:layout_width="315dp"
         android:layout_height="51dp"
@@ -126,7 +139,7 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/h_loginguideline04" />

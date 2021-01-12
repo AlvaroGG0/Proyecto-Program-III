@@ -25,4 +25,6 @@
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="yesterday">Yesterday</string>
+    <string name="user_pass_error">User/Password incorrect</string>
+    <string name="user_exists">User already exists</string>
 </resources>
