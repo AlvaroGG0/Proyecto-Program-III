@@ -1,5 +1,6 @@
 package com.example.sporttogether.ui.activities;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -82,6 +83,16 @@ public class MatchesMainActivity extends AppCompatActivity {
         if (hasFocus){
             restartAdapter();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+            .setMessage(R.string.sign_off_question)
+            .setPositiveButton(R.string.yes, (dialog, id) -> finish())
+            .setNegativeButton(R.string.no, (dialog, id) -> {
+            })
+            .show();
     }
 
     public void restartAdapter(){

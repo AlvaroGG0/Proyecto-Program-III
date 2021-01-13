@@ -38,5 +38,9 @@
         <item name="sorting_array_sport">@string/sorting_array_sport</item>
         <item name="sorting_array_availability">@string/sorting_array_availability</item>
     </string-array>
+    <string name="sign_off_question">¿Sign off?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 
 </resources>

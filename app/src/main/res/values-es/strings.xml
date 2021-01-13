@@ -25,4 +25,7 @@
     <string name="sorting_array_time">Hora</string>
     <string name="sorting_array_sport">Deporte</string>
     <string name="sorting_array_availability">Plazas disponibles</string>
+    <string name="sign_off_question">¿Cerrar sesión?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
 </resources>
