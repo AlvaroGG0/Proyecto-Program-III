@@ -1,5 +1,6 @@
 package com.example.sporttogether.ui.activities;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -82,6 +83,22 @@ public class MatchesMainActivity extends AppCompatActivity {
         if (hasFocus){
             restartAdapter();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+            .setMessage("¿Desea cerrar sesión?")
+            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
+                }
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            })
+            .show();
     }
 
     public void restartAdapter(){
