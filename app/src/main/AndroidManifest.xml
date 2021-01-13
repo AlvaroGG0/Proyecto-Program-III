@@ -12,7 +12,7 @@
         <activity android:name=".ui.activities.FirstLoginActivity" />
         <activity android:name=".ui.activities.SingUpActivity" />
         <activity android:name=".ui.activities.LogInActivity" />
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

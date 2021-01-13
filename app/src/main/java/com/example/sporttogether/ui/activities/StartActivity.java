@@ -1,8 +1,12 @@
 package com.example.sporttogether.ui.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -12,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sporttogether.R;
 import com.example.sporttogether.database.Database;
 
-public class MainActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
     private VideoView bgVideoView;
 
@@ -20,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         Database.startConnection(this);
         Toast.makeText(getBaseContext(), "Conectado a la base de datos",
