@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.sporttogether.partido.Partido;
+import com.example.sporttogether.ui.activities.LogInActivity;
 import com.example.sporttogether.usuario.Usuario;
 import com.example.sporttogether.utils.BCrypt.BCrypt;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
@@ -244,6 +245,10 @@ public class Database extends SQLiteAssetHelper {
 		}
 	}
 
+	/**
+	 * Este método elimina un partido a través de su id.
+	 * @param idPartido idPartido del partido a eliminar.
+	 */
 	public static void deleteMatch(int idPartido){
 		String sql = "DELETE FROM Partidos WHERE idpartido = ?";
 
@@ -255,6 +260,87 @@ public class Database extends SQLiteAssetHelper {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	/**
+	 * Este método permite incluir a un usuario a un equipo de un partido.
+	 * @param username Nombre de usuario del usuario
+	 * @param partido Instancia del partido al que unirse
+	 * @param numEquipo Equipo al que unirse
+	 */
+	public static void joinMatch(String username, Partido partido, int numEquipo){
+		String[] partidos;
+
+		if (numEquipo==1){
+			partidos = partido.getEquipo1();
+		}else{
+			partidos = partido.getEquipo2();
+		}
+
+		for (int i = 0; i < partidos.length; i++) {
+			if (partidos[i].equals("null")){
+				partidos[i]=username;
+				break;
+			}
+		}
+
+		String sql = "UPDATE partidos SET equipo" + numEquipo + " = ? WHERE idpartido = ?";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			if (numEquipo==1){
+				pstmt.setString(1, Arrays.toString(partido.getEquipo1()).replace("[", "").replace("]", ""));
+			}else if (numEquipo==2){
+				pstmt.setString(1, Arrays.toString(partido.getEquipo2()).replace("[", "").replace("]", ""));
+			}
+			pstmt.setInt(2, partido.getIdPartido());
+
+			pstmt.executeUpdate();
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
+	}
+
+	/**
+	 * Este método permite eliminar a un usuario de un partido al que esté unido
+	 * @param username Nombre de usaurio del usuario a eliminar
+	 * @param partido Instancia del partido
+	 */
+	public static void leaveMatch(String username, Partido partido){
+		int numEquipo = 0;
+		if (Arrays.asList(partido.getEquipo1()).contains(LogInActivity.usuario.getUsername())){
+			for (int i=0; i<partido.getEquipo1().length; i++){
+				if (partido.getEquipo1()[i].equals(username)){
+					partido.getEquipo1()[i] = "null";
+					numEquipo=1;
+					break;
+				}
+			}
+		}else{
+			for (int i=0; i<partido.getEquipo2().length; i++){
+				if (partido.getEquipo2()[i].equals(username)){
+					partido.getEquipo2()[i] = "null";
+					numEquipo=2;
+					break;
+				}
+			}
+		}
+
+		String sql = "UPDATE partidos SET equipo" + numEquipo + " = ? WHERE idpartido = ?";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			if (numEquipo==1){
+				pstmt.setString(1, Arrays.toString(partido.getEquipo1()).replace("[", "").replace("]", ""));
+			}else if (numEquipo==2){
+				pstmt.setString(1, Arrays.toString(partido.getEquipo2()).replace("[", "").replace("]", ""));
+			}
+			pstmt.setInt(2, partido.getIdPartido());
+
+			pstmt.executeUpdate();
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
+
+
 	}
 
 }

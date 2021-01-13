@@ -3,6 +3,7 @@ package com.example.sporttogether.ui.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sporttogether.R;
@@ -18,6 +20,7 @@ import com.example.sporttogether.database.Database;
 import com.example.sporttogether.partido.Partido;
 import com.example.sporttogether.ui.activities.LogInActivity;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,18 +62,49 @@ public class MatchesMainRecyclerAdapter extends
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder) holder).setViewDetails(partidos.get(position));
 
-        holder.itemView.setOnClickListener(v -> Toast.makeText(holder.itemView.getContext(), Integer.toString(position) , Toast.LENGTH_SHORT).show());
-
         holder.itemView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
             if (LogInActivity.usuario.getUsername().equals(partidos.get(position).getEquipo1()[0])){
                 menu.add(0, v.getId(), 0, holder.itemView.getResources().getString(R.string.delete));
-
                 menu.getItem(0).setOnMenuItemClickListener(item -> {
                     Database.deleteMatch(partidos.get(position).getIdPartido());
                     partidos.remove(position);
                     notifyItemRemoved(position);
                     return false;
                 });
+            }else{
+                if (Arrays.asList(partidos.get(position).getEquipo1()).contains(LogInActivity.usuario.getUsername()) || Arrays.asList(partidos.get(position).getEquipo2()).contains(LogInActivity.usuario.getUsername())){
+                    menu.add(1, v.getId(), 0, "Abandonar partido");
+                    menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            Database.leaveMatch(LogInActivity.usuario.getUsername(), partidos.get(position));
+                            return false;
+                        }
+                    });
+                }else if (!(partidos.get(position).getPlazasDisponibles()==0)){
+                    menu.add(1,v.getId(), 0,"Unirme");
+                    menu.getItem(0).setOnMenuItemClickListener(item -> {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext())
+                                .setMessage("¿A qué equipo se desea unir?")
+                                .setNegativeButton("Equipo 1", (dialog, id) -> {
+                                    Database.joinMatch(LogInActivity.usuario.getUsername(), partidos.get(position), 1);
+                                    notifyItemChanged(position);
+                                })
+                                .setPositiveButton("Equipo 2", (dialog, id) -> {
+                                    Database.joinMatch(LogInActivity.usuario.getUsername(), partidos.get(position), 2);
+                                    notifyItemChanged(position);
+                                });
+
+                        final AlertDialog dialog = builder.create();
+                        dialog.show();
+                        if (!Arrays.asList(partidos.get(position).getEquipo1()).contains("null")){
+                            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setEnabled(false);
+                        }else if (!Arrays.asList(partidos.get(position).getEquipo2()).contains("null")){
+                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                        }
+                        return false;
+                    });
+                }
             }
         });
     }
@@ -105,12 +139,14 @@ public class MatchesMainRecyclerAdapter extends
         private final TextView dateTextView;
         private final TextView textView7;
         private final TextView textView8;
+        private final ImageView imageView4;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             dateTextView = itemView.findViewById(R.id.datetime_textview);
             textView7 = itemView.findViewById(R.id.textView7);
             textView8 = itemView.findViewById(R.id.textView8);
+            imageView4 = itemView.findViewById(R.id.imageView4);
 
         }
 
@@ -118,10 +154,18 @@ public class MatchesMainRecyclerAdapter extends
             dateTextView.setText(partido.getDatetime().toLocalTime().toString());
             textView7.setText(String.format(Locale.getDefault(),"(%d/%d)", partido.getPlazasOcupadas()[0], partido.getEquipo1().length));
             textView8.setText(String.format(Locale.getDefault(),"(%d/%d)", partido.getPlazasOcupadas()[1], partido.getEquipo2().length));
+
             if (partido.getPlazasOcupadas()[0]==partido.getEquipo1().length){
                 textView7.setTextColor(Color.parseColor("#b71c1c"));
             }if (partido.getPlazasOcupadas()[1]==partido.getEquipo2().length){
-                textView7.setTextColor(Color.parseColor("#b71c1c"));
+                textView8.setTextColor(Color.parseColor("#b71c1c"));
+            }
+
+            if (LogInActivity.usuario.getUsername().equals(partido.getEquipo1()[0])){
+                imageView4.setVisibility(View.VISIBLE);
+                imageView4.setColorFilter(Color.parseColor("#e53935"));
+            }else if (Arrays.asList(partido.getEquipo1()).contains(LogInActivity.usuario.getUsername()) || Arrays.asList(partido.getEquipo2()).contains(LogInActivity.usuario.getUsername())){
+                imageView4.setVisibility(View.VISIBLE);
             }
         }
     }
