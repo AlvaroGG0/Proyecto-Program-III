@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.example.sporttogether.partido.Partido;
 import com.example.sporttogether.usuario.Usuario;
-import com.example.sporttogether.utils.BCrypt;
+import com.example.sporttogether.utils.BCrypt.BCrypt;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.sql.Connection;

@@ -15,6 +15,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.example.sporttogether.R;
 import com.example.sporttogether.database.Database;
 import com.example.sporttogether.partido.Partido;
+import com.example.sporttogether.utils.sorting.Sorting;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -25,10 +26,12 @@ import java.util.List;
 public class MatchesMainPagerAdapter extends PagerAdapter {
 
     private List<String> mItems = new ArrayList<>();
-    private List<Partido> partidos = new ArrayList<>();
+    private ArrayList<Partido> partidos = new ArrayList<>();
     private LocalDate initialDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    private int sorting;
 
-    public MatchesMainPagerAdapter() {
+    public MatchesMainPagerAdapter(int sorting) {
+        this.sorting=sorting;
     }
 
     @NonNull
@@ -54,6 +57,18 @@ public class MatchesMainPagerAdapter extends PagerAdapter {
             text.setVisibility(View.VISIBLE);
             recyclerview_matches.setVisibility(View.INVISIBLE);
         }else {
+            switch (this.sorting){
+                case(0):
+                    partidos = Sorting.mergeSortDate(partidos);
+                    break;
+                case (1):
+                    partidos = Sorting.mergeSortInt(partidos);
+                    break;
+                case(2):
+                    partidos = Sorting.mergeSortArrays(partidos);
+                    break;
+            }
+
             text.setVisibility(View.INVISIBLE);
             recyclerview_matches.setVisibility(View.VISIBLE);
             MatchesMainRecyclerAdapter adapter = new MatchesMainRecyclerAdapter(partidos);

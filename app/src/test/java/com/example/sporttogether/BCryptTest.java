@@ -1,6 +1,6 @@
 package com.example.sporttogether;
 
-import com.example.sporttogether.utils.BCrypt;
+import com.example.sporttogether.utils.BCrypt.BCrypt;
 
 
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>

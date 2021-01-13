@@ -116,11 +116,5 @@ public class CreateMatchDialog extends DialogFragment {
             dialog.getWindow().setLayout(width, height);
         }
     }
-
-    @Override
-    public void onDismiss(@NonNull DialogInterface dialog) {
-        super.onDismiss(dialog);
-        Objects.requireNonNull(getActivity()).recreate();
-    }
 }
 

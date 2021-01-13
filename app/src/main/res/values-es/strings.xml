@@ -22,4 +22,7 @@
     <string name="user_pass_error">Usuario y/o contraseña incorrectos</string>
     <string name="user_exists">El usuario ya existe</string>
     <string name="create_match_data_error">Inserte todos los datos solicitados</string>
+    <string name="sorting_array_time">Hora</string>
+    <string name="sorting_array_sport">Deporte</string>
+    <string name="sorting_array_availability">Plazas disponibles</string>
 </resources>

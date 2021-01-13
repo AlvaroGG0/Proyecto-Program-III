@@ -8,7 +8,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.example.sporttogether.database.Database;
 import com.example.sporttogether.partido.Partido;
 import com.example.sporttogether.usuario.Usuario;
-import com.example.sporttogether.utils.BCrypt;
+import com.example.sporttogether.utils.BCrypt.BCrypt;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

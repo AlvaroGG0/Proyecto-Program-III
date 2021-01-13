@@ -1,4 +1,4 @@
-package com.example.sporttogether.utils;
+package com.example.sporttogether.utils.BCrypt;
 
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //

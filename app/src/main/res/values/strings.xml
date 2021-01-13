@@ -16,6 +16,7 @@
         <item name="football">@string/football</item>
         <item name="basketball">@string/basketball</item>
     </string-array>
+
     <string name="complete_profile">Please, complete your profile</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
@@ -28,4 +29,14 @@
     <string name="user_pass_error">User/Password incorrect</string>
     <string name="user_exists">User already exists</string>
     <string name="create_match_data_error">Insert all the required data</string>
+
+    <string name="sorting_array_time">Time</string>
+    <string name="sorting_array_sport">Sport</string>
+    <string name="sorting_array_availability">Places available</string>
+    <string-array name="sorting_array">
+        <item name="sorting_array_time">@string/sorting_array_time</item>
+        <item name="sorting_array_sport">@string/sorting_array_sport</item>
+        <item name="sorting_array_availability">@string/sorting_array_availability</item>
+    </string-array>
+
 </resources>

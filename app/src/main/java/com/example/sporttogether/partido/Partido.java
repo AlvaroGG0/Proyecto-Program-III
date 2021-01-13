@@ -4,12 +4,14 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import com.example.sporttogether.usuario.Usuario;
+import com.example.sporttogether.utils.sorting.I_Comparable;
+import com.example.sporttogether.utils.sorting.Sorting;
 
 /**
- * Clase para el manejo y gestión de los partidos
+ * Clase para el control y gestión de los partidos
  */
 
-public class Partido {
+public class Partido implements I_Comparable<Partido> {
 
 	private int idPartido;
 	private LocalDateTime datetime;
@@ -136,4 +138,28 @@ public class Partido {
 		}
 		return new int[] {plazasOcupadasEquipo1, plazasOcupadasEquipo2};
 	}
+
+	public int getPlazasDisponibles(){
+		int[] plazasOcupadas = getPlazasOcupadas();
+		int plazasDisponibles = 0;
+		plazasDisponibles += equipo1.length - plazasOcupadas[0];
+		plazasDisponibles += equipo2.length - plazasOcupadas[1];
+		return plazasDisponibles;
+	}
+
+	@Override
+	public boolean compareDate(Partido o) {
+		return this.datetime.isAfter(o.datetime);
+	}
+
+	@Override
+	public boolean compareInt(Partido o) {
+		return this.idDeporte>o.idDeporte;
+	}
+
+	@Override
+	public boolean compareArrays(Partido o) {
+		return (this.getPlazasDisponibles() < o.getPlazasDisponibles());
+	}
+
 }

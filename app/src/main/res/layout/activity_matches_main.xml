@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -63,6 +64,7 @@
                     rtl_tabTextAppearance="@android:style/TextAppearance.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
+
             </LinearLayout>
 
             <androidx.viewpager.widget.ViewPager
@@ -81,11 +83,29 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/sortMatchesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="60dp"
+        android:clickable="true"
+        app:backgroundTint="@color/primary_color"
+        app:layout_anchor="@id/createMatchButton"
+        app:layout_anchorGravity="top"
+        app:srcCompat="@drawable/ic_sort_24px" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/createMatchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@android:drawable/ic_input_add" />
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/background" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
