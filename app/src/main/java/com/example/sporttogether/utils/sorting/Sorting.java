@@ -1,7 +1,6 @@
 package com.example.sporttogether.utils.sorting;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Sorting {
 
@@ -14,8 +13,8 @@ public class Sorting {
     public static <T extends I_Comparable<T>> ArrayList<T> mergeSortDate(ArrayList<T> list) {
         if (list.size() == 1) return list;
         else {
-            ArrayList<T> listLeft = new ArrayList<T>(list.subList(0, list.size() / 2 ));
-            ArrayList<T> listRight = new ArrayList<T>(list.subList(list.size() / 2, list.size()));
+            ArrayList<T> listLeft = new ArrayList<>(list.subList(0, list.size() / 2));
+            ArrayList<T> listRight = new ArrayList<>(list.subList(list.size() / 2, list.size()));
 
             listLeft = mergeSortDate(listLeft);
             listRight = mergeSortDate(listRight);

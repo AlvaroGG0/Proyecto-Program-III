@@ -22,8 +22,6 @@ public class SingUpActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private TextView userExists;
-    private Button singupButton;
-    private ImageView returnSign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +31,8 @@ public class SingUpActivity extends AppCompatActivity {
         username = findViewById(R.id.editText_username);
         password = findViewById(R.id.editText_password);
         userExists = findViewById(R.id.user_exists);
-        singupButton = findViewById(R.id.login_button1);
-        returnSign = findViewById(R.id.returnImage);
+        Button singupButton = findViewById(R.id.login_button1);
+        ImageView returnSign = findViewById(R.id.returnImage);
 
         singupButton.setOnClickListener(v -> {
             if (username.getText().toString().isEmpty()){

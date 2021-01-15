@@ -1,6 +1,5 @@
 package com.example.sporttogether.ui.activities;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;

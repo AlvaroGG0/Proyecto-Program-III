@@ -99,7 +99,7 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        ImageView returnSign = (ImageView) findViewById(R.id.returnImage);
+        ImageView returnSign = findViewById(R.id.returnImage);
         returnSign.setOnClickListener(v -> finish());
     }
 

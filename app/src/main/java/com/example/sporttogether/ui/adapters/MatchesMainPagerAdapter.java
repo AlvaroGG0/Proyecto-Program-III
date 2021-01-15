@@ -4,10 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
@@ -26,9 +24,8 @@ import java.util.List;
 public class MatchesMainPagerAdapter extends PagerAdapter {
 
     private List<String> mItems = new ArrayList<>();
-    private ArrayList<Partido> partidos = new ArrayList<>();
-    private LocalDate initialDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    private int sorting;
+    private final LocalDate initialDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    private final int sorting;
 
     public MatchesMainPagerAdapter(int sorting) {
         this.sorting=sorting;
@@ -43,6 +40,7 @@ public class MatchesMainPagerAdapter extends PagerAdapter {
         TextView text = view.findViewById(R.id.textView4);
         RecyclerView recyclerview_matches = view.findViewById(R.id.recyclerview_matches);
 
+        ArrayList<Partido> partidos = new ArrayList<>();
         if (mItems.get(position).equals(container.getResources().getString(R.string.today))){
             partidos = Database.getDateMatches(String.valueOf(initialDate));
         }else if (mItems.get(position).equals(container.getResources().getString(R.string.tomorrow))){

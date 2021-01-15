@@ -1,5 +1,6 @@
 package com.example.sporttogether.ui.dialogs;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        String selectedTime = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute);
+        @SuppressLint("DefaultLocale") String selectedTime = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute);
         this.editText.setText(selectedTime);
     }
 

@@ -1,14 +1,11 @@
 package com.example.sporttogether.ui.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,16 +27,16 @@ public class StartActivity extends AppCompatActivity {
 
         Database.startConnection(this);
 
-        bgVideoView = (VideoView) findViewById(R.id.bg_videoView);
+        bgVideoView = findViewById(R.id.bg_videoView);
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bgvideo);
         bgVideoView.setVideoURI(uri);
         bgVideoView.start();
         bgVideoView.setOnPreparedListener(mp -> mp.setLooping(true));
 
-        Button logInButton = (Button) findViewById(R.id.login_button);
+        Button logInButton = findViewById(R.id.login_button);
         logInButton.setOnClickListener(v -> openLogInActivity());
 
-        Button singUpButton = (Button) findViewById(R.id.signup_button);
+        Button singUpButton = findViewById(R.id.signup_button);
         singUpButton.setOnClickListener(v -> openSignUpActivity());
 
     }

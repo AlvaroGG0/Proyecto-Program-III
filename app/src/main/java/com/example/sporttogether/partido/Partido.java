@@ -1,11 +1,8 @@
 package com.example.sporttogether.partido;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-
-import com.example.sporttogether.usuario.Usuario;
 import com.example.sporttogether.utils.sorting.I_Comparable;
-import com.example.sporttogether.utils.sorting.Sorting;
+
+import java.time.LocalDateTime;
 
 /**
  * Clase para el control y gestión de los partidos
@@ -64,56 +61,28 @@ public class Partido implements I_Comparable<Partido> {
 		return idPartido;
 	}
 
-	public void setIdPartido(int idPartido) {
-		this.idPartido = idPartido;
-	}
-
 	public LocalDateTime getDatetime() {
 		return datetime;
-	}
-
-	public void setDatetime(LocalDateTime datetime) {
-		this.datetime = datetime;
 	}
 
 	public int getIdDeporte() {
 		return idDeporte;
 	}
 
-	public void setIdDeporte(int idDeporte) {
-		this.idDeporte = idDeporte;
-	}
-
 	public String[] getEquipo1() {
 		return equipo1;
-	}
-
-	public void setEquipo1(String[] equipo1) {
-		this.equipo1 = equipo1;
 	}
 
 	public String[] getEquipo2() {
 		return equipo2;
 	}
 
-	public void setEquipo2(String[] equipo2) {
-		this.equipo2 = equipo2;
-	}
-
 	public String[] getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(String[] resultado) {
-		this.resultado = resultado;
-	}
-
 	public int getEquipoGanador() {
 		return equipoGanador;
-	}
-
-	public void setEquipoGanador(int equipoGanador) {
-		this.equipoGanador = equipoGanador;
 	}
 
 	/**

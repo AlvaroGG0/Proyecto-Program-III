@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.sporttogether.partido.Partido;
-import com.example.sporttogether.ui.activities.LogInActivity;
 import com.example.sporttogether.usuario.Usuario;
 import com.example.sporttogether.utils.BCrypt.BCrypt;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
@@ -307,7 +306,7 @@ public class Database extends SQLiteAssetHelper {
 	 */
 	public static void leaveMatch(String username, Partido partido){
 		int numEquipo = 0;
-		if (Arrays.asList(partido.getEquipo1()).contains(LogInActivity.usuario.getUsername())){
+		if (Arrays.asList(partido.getEquipo1()).contains(username)){
 			for (int i=0; i<partido.getEquipo1().length; i++){
 				if (partido.getEquipo1()[i].equals(username)){
 					partido.getEquipo1()[i] = "null";

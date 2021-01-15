@@ -1,5 +1,6 @@
 package com.example.sporttogether.ui.dialogs;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -38,8 +39,8 @@ public class DatePickerFragment extends DialogFragment
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         if(this.editText.getText().toString().length()>0) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date parsedDate = null;
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date parsedDate;
             try {
                 parsedDate = formatter.parse(this.editText.getText().toString());
                 c.setTime(parsedDate);
@@ -56,7 +57,7 @@ public class DatePickerFragment extends DialogFragment
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        String selectedDate = String.format("%02d", day) + "/" + String.format("%02d", (month+1))  + "/" + String.format("%04d", year);
+        @SuppressLint("DefaultLocale") String selectedDate = String.format("%02d", day) + "/" + String.format("%02d", (month+1))  + "/" + String.format("%04d", year);
         this.editText.setText(selectedDate);
     }
 }
