@@ -43,11 +43,9 @@ public class SingUpActivity extends AppCompatActivity {
                 password.setHintTextColor(Color.parseColor("#FB1100"));
             }else {
                 if (userExists.getVisibility() == View.VISIBLE){
-                    Toast.makeText(getBaseContext(), "El usuario ya existe", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), R.string.user_exists, Toast.LENGTH_SHORT).show();
                 }else{
                     Database.registerNewUser(username.getText().toString(), password.getText().toString());
-                    Toast.makeText(getBaseContext(), "Usuario " + username.getText().toString() + " registrado",
-                            Toast.LENGTH_LONG).show();
                     openLogInActivity();
                     SingUpActivity.super.finish();
                 }
@@ -64,7 +62,7 @@ public class SingUpActivity extends AppCompatActivity {
                 if (username.getCurrentHintTextColor() == Color.parseColor("#FB1100")){
                     username.setHintTextColor(Color.parseColor("#32FFFFFF"));
                 }
-                if (Database.verifyRegisterUser(username.getText().toString())){
+                if (Database.verifyRegisterUser(username.getText().toString()) || username.getText().toString().equals("null")){
                     userExists.setVisibility(View.VISIBLE);
                 }else{
                     userExists.setVisibility(View.INVISIBLE);

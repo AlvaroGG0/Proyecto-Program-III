@@ -40,7 +40,7 @@ public class MatchesMainActivity extends AppCompatActivity {
 
         sortMatchesButton = findViewById(R.id.sortMatchesButton);
         sortMatchesButton.setOnClickListener(v -> new AlertDialog.Builder(this)
-                .setTitle("Ordenar por:")
+                .setTitle(R.string.order_by)
                 .setItems(R.array.sorting_array, (dialog, which) -> {
                     sorting = which;
                     restartAdapter();

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +49,7 @@ public class LogInActivity extends AppCompatActivity {
                     if (usuario.getFirstLogin()==1){
                         openFirstLoginActivity();
                     }else{
-                        Toast.makeText(getBaseContext(), "Bienvenido " + username.getText().toString() + "!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), R.string.welcome_user + " " + username.getText().toString() + "!", Toast.LENGTH_LONG).show();
                         openMatchesMainActivity();
                     }
                     LogInActivity.super.finish();

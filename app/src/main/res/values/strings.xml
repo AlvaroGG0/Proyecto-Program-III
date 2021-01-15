@@ -42,6 +42,26 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="create_match_too_much_players">Too much players</string>
+    <string name="welcome_user">Welcome</string>
+    <string name="no_matches_available">No matches available</string>
+    <string name="order_by">Order by:</string>
+    <string name="create_match">Create Match</string>
+    <string name="sport_selection">Select a sport</string>
+    <string name="players_number">Number of players</string>
+    <string name="set_number">Number of sets</string>
+    <string name="player_number_team">Number of players (Team)</string>
+    <string name="create">Create</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+    <string name="individual">Individual</string>
+    <string name="couples">Couples</string>
+    <string name="best_of_3">Best of 3</string>
+    <string name="best_of_5">Best of 5</string>
+    <string name="team_1">TEAM 1</string>
+    <string name="team_2">TEAM 2</string>
+    <string name="team_join_question">Which team do yo want to join?</string>
+    <string name="join">Join</string>
+    <string name="leave">Leave match</string>
 
 
 </resources>

@@ -17,7 +17,7 @@
             android:paddingEnd="16dp"
             app:contentInsetStartWithNavigation="0dp"
             app:navigationIcon="@drawable/ic_baseline_close_24"
-            app:title="Crear Partido" />
+            app:title="@string/create_match" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,7 +43,7 @@
             android:layout_width="122dp"
             android:layout_height="17dp"
             android:layout_marginTop="28dp"
-            android:text="Seleccione deporte"
+            android:text="@string/sport_selection"
             app:layout_constraintEnd_toStartOf="@+id/spinner"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

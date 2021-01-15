@@ -29,4 +29,24 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="create_match_too_much_players">Demasiados jugadores</string>
+    <string name="welcome_user">Bienvenido</string>
+    <string name="no_matches_available">No hay partidos disponibles</string>
+    <string name="order_by">Ordenar por:</string>
+    <string name="create_match">Crear Partido</string>
+    <string name="sport_selection">Seleccione deporte</string>
+    <string name="players_number">Número de jugadores</string>
+    <string name="set_number">Número de sets</string>
+    <string name="player_number_team">Número de jugadores (Equipo)</string>
+    <string name="create">Crear</string>
+    <string name="time">Hora</string>
+    <string name="date">Fecha</string>
+    <string name="individual">Individual</string>
+    <string name="couples">Parejas</string>
+    <string name="best_of_3">Mejor de 3</string>
+    <string name="best_of_5">Mejor de 5</string>
+    <string name="team_1">Equipo 1</string>
+    <string name="team_2">EQUIPO 2</string>
+    <string name="team_join_question">A qué equipo deseas unirte?</string>
+    <string name="join">Unirme</string>
+    <string name="leave">Abandonar partido</string>
 </resources>

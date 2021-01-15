@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="19dp"
             android:layout_marginTop="144dp"
-            android:text="Número de sets:"
+            android:text="@string/set_number"
             android:textAlignment="textStart"
             app:layout_constraintEnd_toStartOf="@+id/radioGroupSets"
             app:layout_constraintHorizontal_bias="0.5"
@@ -38,13 +38,13 @@
                 android:id="@+id/radioButtonMejor3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mejor de 3" />
+                android:text="@string/best_of_3" />
 
             <RadioButton
                 android:id="@+id/radioButtonMejor5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mejor de 5" />
+                android:text="@string/best_of_5" />
         </RadioGroup>
 
         <EditText
@@ -54,7 +54,7 @@
             android:layout_marginTop="100dp"
             android:clickable="true"
             android:focusable="false"
-            android:hint="Fecha"
+            android:hint="@string/date"
             android:inputType="date"
             android:maxLines="1"
             android:textColorHint="@color/background"
@@ -70,7 +70,7 @@
             android:layout_marginTop="12dp"
             android:clickable="true"
             android:focusable="false"
-            android:hint="Hora"
+            android:hint="@string/time"
             android:inputType="date"
             android:maxLines="1"
             android:textColorHint="@color/background"

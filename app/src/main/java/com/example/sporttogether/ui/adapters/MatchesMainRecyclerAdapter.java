@@ -73,21 +73,21 @@ public class MatchesMainRecyclerAdapter extends
                 });
             }else{
                 if (Arrays.asList(partido.getEquipo1()).contains(username) || Arrays.asList(partido.getEquipo2()).contains(username)){
-                    menu.add(1, v.getId(), 0, "Abandonar partido");
+                    menu.add(1, v.getId(), 0, R.string.leave);
                     menu.getItem(0).setOnMenuItemClickListener(item -> {
                         Database.leaveMatch(username, partido);
                         return false;
                     });
                 }else if (!(partido.getPlazasDisponibles()==0)){
-                    menu.add(1,v.getId(), 0,"Unirme");
+                    menu.add(1,v.getId(), 0, R.string.join);
                     menu.getItem(0).setOnMenuItemClickListener(item -> {
                         AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext())
-                                .setMessage("¿A qué equipo se desea unir?")
-                                .setNegativeButton("Equipo 1", (dialog, id) -> {
+                                .setMessage(R.string.team_join_question)
+                                .setNegativeButton(R.string.team_1, (dialog, id) -> {
                                     Database.joinMatch(username, partido, 1);
                                     notifyItemChanged(position);
                                 })
-                                .setPositiveButton("Equipo 2", (dialog, id) -> {
+                                .setPositiveButton(R.string.team_2, (dialog, id) -> {
                                     Database.joinMatch(username, partido, 2);
                                     notifyItemChanged(position);
                                 });
