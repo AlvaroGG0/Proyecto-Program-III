@@ -41,6 +41,7 @@
     <string name="sign_off_question">¿Sign off?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="create_match_too_much_players">Too much players</string>
 
 
 </resources>

@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.sporttogether.exceptions.NotAllDataException;
+import com.example.sporttogether.exceptions.TooMuchPlayersException;
+
 public class BaseCreateMatchFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState)
@@ -11,7 +14,7 @@ public class BaseCreateMatchFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public void createMatch() throws Exception {
+    public void createMatch() throws NotAllDataException, TooMuchPlayersException {
     }
 
 }

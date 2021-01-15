@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.sporttogether.R;
 import com.example.sporttogether.database.Database;
+import com.example.sporttogether.exceptions.NotAllDataException;
 import com.example.sporttogether.partido.Partido;
 import com.example.sporttogether.ui.activities.LogInActivity;
 import com.example.sporttogether.ui.dialogs.DatePickerFragment;
@@ -64,9 +65,9 @@ public class PadelFragment extends BaseCreateMatchFragment implements View.OnCli
     }
 
     @Override
-    public void createMatch() throws Exception {
+    public void createMatch() throws NotAllDataException {
         if (etPlannedDate.getText().toString().isEmpty() || etPlannedTime.getText().toString().isEmpty() || radioGroupSets.getCheckedRadioButtonId() == -1){
-            throw new Exception();
+            throw new NotAllDataException();
         }else{
             String dateTime = etPlannedDate.getText().toString() + " " + etPlannedTime.getText().toString();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");

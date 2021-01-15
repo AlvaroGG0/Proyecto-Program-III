@@ -11,6 +11,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.sporttogether.R;
 import com.example.sporttogether.database.Database;
+import com.example.sporttogether.exceptions.NotAllDataException;
+import com.example.sporttogether.exceptions.TooMuchPlayersException;
 import com.example.sporttogether.partido.Partido;
 import com.example.sporttogether.ui.activities.LogInActivity;
 import com.example.sporttogether.ui.dialogs.DatePickerFragment;
@@ -63,16 +65,20 @@ public class FootballFragment extends BaseCreateMatchFragment implements View.On
     }
 
     @Override
-    public void createMatch() throws Exception {
+    public void createMatch() throws NotAllDataException, TooMuchPlayersException {
         if (etPlannedDate.getText().toString().isEmpty() || etPlannedTime.getText().toString().isEmpty() || editTextNumber.getText().toString().isEmpty()) {
-            throw new Exception();
+            throw new NotAllDataException();
         } else {
             int numJugadores = Integer.parseInt(editTextNumber.getText().toString());
-            String dateTime = etPlannedDate.getText().toString() + " " + etPlannedTime.getText().toString();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-            LocalDateTime LDateTime = LocalDateTime.parse(dateTime, formatter);
+            if (numJugadores > 11) {
+                throw new TooMuchPlayersException();
+            } else {
+                String dateTime = etPlannedDate.getText().toString() + " " + etPlannedTime.getText().toString();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                LocalDateTime LDateTime = LocalDateTime.parse(dateTime, formatter);
 
-            Database.createMatch(LogInActivity.usuario, new Partido(LDateTime, 2, new String[numJugadores], new String[numJugadores], new String[1]));
+                Database.createMatch(LogInActivity.usuario, new Partido(LDateTime, 2, new String[numJugadores], new String[numJugadores], new String[1]));
+            }
         }
     }
 }

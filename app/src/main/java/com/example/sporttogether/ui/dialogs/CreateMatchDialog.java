@@ -1,7 +1,6 @@
 package com.example.sporttogether.ui.dialogs;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +16,13 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.sporttogether.R;
+import com.example.sporttogether.exceptions.NotAllDataException;
+import com.example.sporttogether.exceptions.TooMuchPlayersException;
 import com.example.sporttogether.ui.fragments.BaseCreateMatchFragment;
 import com.example.sporttogether.ui.fragments.BasketballFragment;
 import com.example.sporttogether.ui.fragments.FootballFragment;
 import com.example.sporttogether.ui.fragments.PadelFragment;
 import com.example.sporttogether.ui.fragments.TennisFragment;
-
-import java.util.Objects;
 
 public class CreateMatchDialog extends DialogFragment {
 
@@ -92,8 +91,11 @@ public class CreateMatchDialog extends DialogFragment {
                         baseCreateMatchFragment[0].createMatch();
                         dismiss();
                         return true;
-                    } catch (Exception e) {
-                        Toast.makeText(getContext(), R.string.create_match_data_error, Toast.LENGTH_LONG).show();
+                    } catch (NotAllDataException e) {
+                        Toast.makeText(getContext(), R.string.create_match_data_error, Toast.LENGTH_SHORT).show();
+                        return false;
+                    } catch (TooMuchPlayersException e){
+                        Toast.makeText(getContext(), R.string.create_match_too_much_players, Toast.LENGTH_SHORT).show();
                         return false;
                     }
                 });
