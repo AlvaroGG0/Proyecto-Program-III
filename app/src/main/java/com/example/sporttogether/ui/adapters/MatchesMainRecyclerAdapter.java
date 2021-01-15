@@ -3,13 +3,10 @@ package com.example.sporttogether.ui.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -28,6 +25,7 @@ public class MatchesMainRecyclerAdapter extends
         RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<Partido> partidos;
+    private final String username = LogInActivity.usuario.getUsername();
 
     public MatchesMainRecyclerAdapter(List<Partido> partidos){
         this.partidos=partidos;
@@ -62,44 +60,43 @@ public class MatchesMainRecyclerAdapter extends
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder) holder).setViewDetails(partidos.get(position));
 
+        Partido partido = partidos.get(position);
+
         holder.itemView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
-            if (LogInActivity.usuario.getUsername().equals(partidos.get(position).getEquipo1()[0])){
+            if (username.equals(partido.getEquipo1()[0])){
                 menu.add(0, v.getId(), 0, holder.itemView.getResources().getString(R.string.delete));
                 menu.getItem(0).setOnMenuItemClickListener(item -> {
-                    Database.deleteMatch(partidos.get(position).getIdPartido());
+                    Database.deleteMatch(partido.getIdPartido());
                     partidos.remove(position);
                     notifyItemRemoved(position);
                     return false;
                 });
             }else{
-                if (Arrays.asList(partidos.get(position).getEquipo1()).contains(LogInActivity.usuario.getUsername()) || Arrays.asList(partidos.get(position).getEquipo2()).contains(LogInActivity.usuario.getUsername())){
+                if (Arrays.asList(partido.getEquipo1()).contains(username) || Arrays.asList(partido.getEquipo2()).contains(username)){
                     menu.add(1, v.getId(), 0, "Abandonar partido");
-                    menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            Database.leaveMatch(LogInActivity.usuario.getUsername(), partidos.get(position));
-                            return false;
-                        }
+                    menu.getItem(0).setOnMenuItemClickListener(item -> {
+                        Database.leaveMatch(username, partido);
+                        return false;
                     });
-                }else if (!(partidos.get(position).getPlazasDisponibles()==0)){
+                }else if (!(partido.getPlazasDisponibles()==0)){
                     menu.add(1,v.getId(), 0,"Unirme");
                     menu.getItem(0).setOnMenuItemClickListener(item -> {
                         AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext())
                                 .setMessage("¿A qué equipo se desea unir?")
                                 .setNegativeButton("Equipo 1", (dialog, id) -> {
-                                    Database.joinMatch(LogInActivity.usuario.getUsername(), partidos.get(position), 1);
+                                    Database.joinMatch(username, partido, 1);
                                     notifyItemChanged(position);
                                 })
                                 .setPositiveButton("Equipo 2", (dialog, id) -> {
-                                    Database.joinMatch(LogInActivity.usuario.getUsername(), partidos.get(position), 2);
+                                    Database.joinMatch(username, partido, 2);
                                     notifyItemChanged(position);
                                 });
 
                         final AlertDialog dialog = builder.create();
                         dialog.show();
-                        if (!Arrays.asList(partidos.get(position).getEquipo1()).contains("null")){
+                        if (!Arrays.asList(partido.getEquipo1()).contains("null")){
                             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setEnabled(false);
-                        }else if (!Arrays.asList(partidos.get(position).getEquipo2()).contains("null")){
+                        }else if (!Arrays.asList(partido.getEquipo2()).contains("null")){
                             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
                         }
                         return false;
