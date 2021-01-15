@@ -1,5 +1,6 @@
 package com.example.sporttogether.ui.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -49,7 +50,8 @@ public class SingUpActivity extends AppCompatActivity {
                     Database.registerNewUser(username.getText().toString(), password.getText().toString());
                     Toast.makeText(getBaseContext(), "Usuario " + username.getText().toString() + " registrado",
                             Toast.LENGTH_LONG).show();
-                    finish();
+                    openLogInActivity();
+                    SingUpActivity.super.finish();
                 }
             }
         });
@@ -100,5 +102,11 @@ public class SingUpActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    public void openLogInActivity(){
+        Intent intent = new Intent(this, LogInActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

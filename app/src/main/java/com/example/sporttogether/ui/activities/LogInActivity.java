@@ -47,12 +47,13 @@ public class LogInActivity extends AppCompatActivity {
             }else{
                 if (Database.verifyLogin(username.getText().toString(), password.getText().toString())){
                     usuario = Database.getUserInfo(username.getText().toString());
-                    Toast.makeText(getBaseContext(), "Bienvenido " + username.getText().toString() + "!", Toast.LENGTH_LONG).show();
-                    openMatchesMainActivity();
-                    LogInActivity.super.finish();
                     if (usuario.getFirstLogin()==1){
                         openFirstLoginActivity();
+                    }else{
+                        Toast.makeText(getBaseContext(), "Bienvenido " + username.getText().toString() + "!", Toast.LENGTH_LONG).show();
+                        openMatchesMainActivity();
                     }
+                    LogInActivity.super.finish();
                 }else{
                     userpassincorrect.setVisibility(View.VISIBLE);
                 }

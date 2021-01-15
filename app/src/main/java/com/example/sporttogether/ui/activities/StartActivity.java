@@ -29,8 +29,6 @@ public class StartActivity extends AppCompatActivity {
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         Database.startConnection(this);
-        Toast.makeText(getBaseContext(), "Conectado a la base de datos",
-                Toast.LENGTH_LONG).show();
 
         bgVideoView = (VideoView) findViewById(R.id.bg_videoView);
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bgvideo);
@@ -56,8 +54,6 @@ public class StartActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Database.endConnection();
-        Toast.makeText(getBaseContext(), "Desconectado de la base de datos",
-                Toast.LENGTH_LONG).show();
     }
 
     public void openLogInActivity(){

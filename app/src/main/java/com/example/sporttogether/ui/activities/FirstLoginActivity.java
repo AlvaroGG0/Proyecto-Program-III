@@ -1,5 +1,6 @@
 package com.example.sporttogether.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,10 +31,18 @@ public class FirstLoginActivity extends AppCompatActivity {
 
         Button completarPerfilButton = (Button) findViewById(R.id.completarPerfilButton);
 
-        completarPerfilButton.setOnClickListener(v -> Database.completeProfile(LogInActivity.usuario.getUsername(), nombreEditText.getText().toString(), apellidoEditText.getText().toString(),
-                                Integer.parseInt(edadEditText.getText().toString())));
+        completarPerfilButton.setOnClickListener(v -> {
+            Database.completeProfile(LogInActivity.usuario.getUsername(), nombreEditText.getText().toString(), apellidoEditText.getText().toString(),
+                    Integer.parseInt(edadEditText.getText().toString()));
+            openMatchesMainActivity();
+            FirstLoginActivity.super.finish();
+        });
 
+    }
 
-
+    public void openMatchesMainActivity(){
+        Intent intent = new Intent(this, MatchesMainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }
