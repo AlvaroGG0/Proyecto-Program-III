@@ -66,6 +66,11 @@ public class DatabaseTest {
     }
 
     @Test
+    public void testVerifyRegisterUser(){
+        assertTrue(Database.verifyRegisterUser("Test"));
+    }
+
+    @Test
     public void testVerifyLogin() {
         assertTrue("La verificaci�n ha sido fallida", Database.verifyLogin("Test", "Test"));
         System.out.println("Verificaci�n de usuario correcta");
@@ -74,11 +79,10 @@ public class DatabaseTest {
     @Test
     public void testGetUserInfo() {
         Usuario usuario = Database.getUserInfo("Test");
-        assertEquals("El nombre no coincide", "", usuario.getNombre());
-        assertEquals("Los apellidos no coincide", "", usuario.getApellidos());
+        assertEquals("El nombre no coincide", "Test", usuario.getNombre());
+        assertEquals("Los apellidos no coincide", "Test", usuario.getApellidos());
         assertEquals("La edad no coincide", 0, usuario.getEdad());
-        assertEquals("Admin no coincide", 0, usuario.getAdmin());
-        assertEquals("FirstLogin no coincide", 1, usuario.getFirstLogin());
+        assertEquals("FirstLogin no coincide", 0, usuario.getFirstLogin());
         System.out.println("Recopilación de usuario correcta");
     }
 
@@ -89,14 +93,13 @@ public class DatabaseTest {
         assertEquals("El nombre no coincide", "Test", usuario.getNombre());
         assertEquals("Los apellidos no coincide", "Test", usuario.getApellidos());
         assertEquals("La edad no coincide", 0, usuario.getEdad());
-        assertEquals("Admin no coincide", 0, usuario.getAdmin());
         assertEquals("FirstLogin no coincide", 0, usuario.getFirstLogin());
         System.out.println("Usuario completado correctamente");
     }
 
     @Test
-    public void testGetMatches() {
-        ArrayList<Partido> partidos = Database.getMatches();
+    public void testGetDateMatches() {
+        ArrayList<Partido> partidos = Database.getDateMatches("2020-01-01T00:00");
         Partido partidoTest = partidos.get(0);
         assertEquals("El idPartido no coincide", 1, partidoTest.getIdPartido());
         assertEquals("La fecha no coincide", LocalDateTime.of(2020, Month.JANUARY, 1, 0, 0), partidoTest.getDatetime());
@@ -114,9 +117,8 @@ public class DatabaseTest {
         Partido partido = new Partido(LocalDateTime.of(2020, Month.JANUARY, 1, 0, 0),
                 0, new String[1], new String[1], new String[1]);
         Database.createMatch(usuario, partido);
-        ArrayList<Partido> partidos = Database.getMatches();
+        ArrayList<Partido> partidos = Database.getDateMatches("2020-01-01T00:00");
         Partido partidoTest = partidos.get(1);
-        assertEquals("El idPartido no coincide", 2, partidoTest.getIdPartido());
         assertEquals("La fecha no coincide", LocalDateTime.of(2020, Month.JANUARY, 1, 0, 0), partidoTest.getDatetime());
         assertEquals("El idDeporte no coincide", 0, partidoTest.getIdDeporte());
         assertEquals("El equipo1 no coincide", "Test", partidoTest.getEquipo1()[0]);
@@ -124,5 +126,28 @@ public class DatabaseTest {
         assertEquals("El resultado no coincide", "null", partidoTest.getResultado()[0]);
         assertEquals("El equipo ganador no coincide", 0, partidoTest.getEquipoGanador());
         System.out.println("Partidos recopilados correctamente");
+    }
+
+    @Test
+    public void testDeleteMatch(){
+        Database.deleteMatch(2);
+        ArrayList<Partido> partidos = Database.getDateMatches("2020-01-01T00:00");
+        assertEquals(1, partidos.size());
+    }
+
+    @Test
+    public void testJoinMatch(){
+        ArrayList<Partido> partidos = Database.getDateMatches("2020-01-01T00:00");
+        Database.joinMatch("JoinTest", partidos.get(0), 1);
+        partidos = Database.getDateMatches("2020-01-01T00:00");
+        assertEquals("JoinTest", partidos.get(0).getEquipo1()[1]);
+    }
+
+    @Test
+    public void testLeaveMatch(){
+        ArrayList<Partido> partidos = Database.getDateMatches("2020-01-01T00:00");
+        Database.leaveMatch("JoinTest", partidos.get(0));
+        partidos = Database.getDateMatches("2020-01-01T00:00");
+        assertEquals("null", partidos.get(0).getEquipo1()[1]);
     }
 }

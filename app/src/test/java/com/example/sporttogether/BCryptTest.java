@@ -25,7 +25,7 @@ import junit.framework.TestCase;
  * @version 0.2
  */
 public class BCryptTest extends TestCase {
-	String test_vectors[][] = {
+	String[][] test_vectors = {
 			{ "", 
 			"$2a$06$DCq7YPn5Rq63x1Lad4cll.",
 			"$2a$06$DCq7YPn5Rq63x1Lad4cll.TV4S6ytwfsfvkgY8jIucDrjc8deX1s." },
@@ -93,15 +93,15 @@ public class BCryptTest extends TestCase {
 	 */
 	public void testHashpw() {
 		System.out.print("BCrypt.hashpw(): ");
-		for (int i = 0; i < test_vectors.length; i++) {
-			String plain = test_vectors[i][0];
-			String salt = test_vectors[i][1];
-			String expected = test_vectors[i][2];
+		for (String[] test_vector : test_vectors) {
+			String plain = test_vector[0];
+			String salt = test_vector[1];
+			String expected = test_vector[2];
 			String hashed = BCrypt.hashpw(plain, salt);
 			assertEquals(hashed, expected);
 			System.out.print(".");
 		}
-		System.out.println("");
+		System.out.println();
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class BCryptTest extends TestCase {
 	public void testGensaltInt() {
 		System.out.print("BCrypt.gensalt(log_rounds):");
 		for (int i = 4; i <= 12; i++) {
-			System.out.print(" " + Integer.toString(i) + ":");
+			System.out.print(" " + i + ":");
 			for (int j = 0; j < test_vectors.length; j += 4) {
 				String plain = test_vectors[j][0];
 				String salt = BCrypt.gensalt(i);
@@ -120,7 +120,7 @@ public class BCryptTest extends TestCase {
 				System.out.print(".");
 			}
 		}
-		System.out.println("");
+		System.out.println();
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class BCryptTest extends TestCase {
 			assertEquals(hashed1, hashed2);
 			System.out.print(".");
 		}
-		System.out.println("");
+		System.out.println();
 	}
 
 	/**
@@ -145,13 +145,13 @@ public class BCryptTest extends TestCase {
 	 */
 	public void testCheckpw_success() {
 		System.out.print("BCrypt.checkpw w/ good passwords: ");
-		for (int i = 0; i < test_vectors.length; i++) {
-			String plain = test_vectors[i][0];
-			String expected = test_vectors[i][2];
+		for (String[] test_vector : test_vectors) {
+			String plain = test_vector[0];
+			String expected = test_vector[2];
 			assertTrue(BCrypt.checkpw(plain, expected));
 			System.out.print(".");
 		}
-		System.out.println("");
+		System.out.println();
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class BCryptTest extends TestCase {
 			assertFalse(BCrypt.checkpw(plain, expected));
 			System.out.print(".");
 		}
-		System.out.println("");
+		System.out.println();
 	}
 
 	/**
@@ -185,7 +185,7 @@ public class BCryptTest extends TestCase {
 		String h2 = BCrypt.hashpw(pw2, BCrypt.gensalt());
 		assertFalse(BCrypt.checkpw(pw1, h2));
 		System.out.print(".");
-		System.out.println("");
+		System.out.println();
 	}
 
 }

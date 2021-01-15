@@ -5,6 +5,12 @@ import java.util.Collections;
 
 public class Sorting {
 
+    /**
+     * Función MergeSort generica utilizando fecha
+     * @param list Lista a ser ordenada
+     * @param <T> Tipo de objeto de la lista
+     * @return La lista ordenada
+     */
     public static <T extends I_Comparable<T>> ArrayList<T> mergeSortDate(ArrayList<T> list) {
         if (list.size() == 1) return list;
         else {
@@ -16,16 +22,14 @@ public class Sorting {
 
             return mergeDate(listLeft, listRight);
         }
-
-
     }
 
     /**
-     * Generic Merge function to merge and sort the divided lists (using id)
-     * @param a left list
-     * @param b right list
-     * @param <T> type of the objects in the list
-     * @return merged (and sorted) list
+     * Función Merge genérica para unir y ordenar las listas divididas (utilizando las fechas)
+     * @param a Lista izquierda
+     * @param b Lista derecha
+     * @param <T> Tipo de objeto de la lista
+     * @return La lista unida y ordenada
      */
     public static <T extends I_Comparable<T>> ArrayList<T> mergeDate(ArrayList<T> a, ArrayList<T> b) {
         ArrayList<T> c = new ArrayList<>();
@@ -38,7 +42,7 @@ public class Sorting {
                 a.remove(0);
             }
         }
-        //At this point either a or b is empty
+
         while (!a.isEmpty()) {
             c.add(a.get(0));
             a.remove(0);
@@ -51,32 +55,30 @@ public class Sorting {
     }
 
     /**
-     * Generic Merge Sort using name
-     * @param list list to be sorted
-     * @param <T> type of the objects to sort
-     * @return sorted list
+     * Función MergeSort generica utilizando un Integer
+     * @param list Lista a ser ordenada
+     * @param <T> Tipo de objeto de la lista
+     * @return La lista ordenada
      */
     public static <T extends I_Comparable<T>> ArrayList<T> mergeSortInt(ArrayList<T> list) {
         if (list.size() == 1) return list;
         else {
-            ArrayList<T> listLeft = new ArrayList<T>(list.subList(0, list.size() / 2 ));
-            ArrayList<T> listRight = new ArrayList<T>(list.subList(list.size() / 2, list.size()));
+            ArrayList<T> listLeft = new ArrayList<>(list.subList(0, list.size() / 2));
+            ArrayList<T> listRight = new ArrayList<>(list.subList(list.size() / 2, list.size()));
 
             listLeft = mergeSortInt(listLeft);
             listRight = mergeSortInt(listRight);
 
             return mergeInt(listLeft, listRight);
         }
-
-
     }
 
     /**
-     * Generic Merge function to merge and sort the divided lists (using name)
-     * @param a left list
-     * @param b right list
-     * @param <T> type of the objects in the list
-     * @return merged (and sorted) list
+     * Función Merge genérica para unir y ordenar las listas divididas (utilizando un integer)
+     * @param a Lista izquierda
+     * @param b Lista derecha
+     * @param <T> Tipo de objeto de la lista
+     * @return La lista unida y ordenada
      */
     public static <T extends I_Comparable<T>> ArrayList<T> mergeInt(ArrayList<T> a, ArrayList<T> b) {
         ArrayList<T> c = new ArrayList<>();
@@ -89,7 +91,7 @@ public class Sorting {
                 a.remove(0);
             }
         }
-        //At this point either a or b is empty
+
         while (!a.isEmpty()) {
             c.add(a.get(0));
             a.remove(0);
@@ -101,23 +103,32 @@ public class Sorting {
         return c;
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-
+    /**
+     * Función MergeSort generica utilizando un Array
+     * @param list Lista a ser ordenada
+     * @param <T> Tipo de objeto de la lista
+     * @return La lista ordenada
+     */
     public static <T extends I_Comparable<T>> ArrayList<T> mergeSortArrays(ArrayList<T> list) {
         if (list.size() == 1) return list;
         else {
-            ArrayList<T> listLeft = new ArrayList<T>(list.subList(0, list.size() / 2 ));
-            ArrayList<T> listRight = new ArrayList<T>(list.subList(list.size() / 2, list.size()));
+            ArrayList<T> listLeft = new ArrayList<>(list.subList(0, list.size() / 2));
+            ArrayList<T> listRight = new ArrayList<>(list.subList(list.size() / 2, list.size()));
 
             listLeft = mergeSortArrays(listLeft);
             listRight = mergeSortArrays(listRight);
 
             return mergeArrays(listLeft, listRight);
         }
-
-
     }
 
+    /**
+     * Función Merge genérica para unir y ordenar las listas divididas (utilizando un Array)
+     * @param a Lista izquierda
+     * @param b Lista derecha
+     * @param <T> Tipo de objeto de la lista
+     * @return La lista unida y ordenada
+     */
     public static <T extends I_Comparable<T>> ArrayList<T> mergeArrays(ArrayList<T> a, ArrayList<T> b) {
         ArrayList<T> c = new ArrayList<>();
         while (!a.isEmpty() && !b.isEmpty()) {
@@ -129,7 +140,7 @@ public class Sorting {
                 a.remove(0);
             }
         }
-        //At this point either a or b is empty
+
         while (!a.isEmpty()) {
             c.add(a.get(0));
             a.remove(0);
@@ -140,5 +151,4 @@ public class Sorting {
         }
         return c;
     }
-
 }

@@ -22,13 +22,6 @@ public class Partido implements I_Comparable<Partido> {
 	private int equipoGanador;
 
 	/**
-	 * Constructor vacío
-	 */
-	public Partido() {
-		super();
-	}
-
-	/**
 	 * Constructor principalmente usado en la creación de partidos
 	 * @param datetime Fecha y hora del partido
 	 * @param idDeporte Tipo de deporte
@@ -123,6 +116,10 @@ public class Partido implements I_Comparable<Partido> {
 		this.equipoGanador = equipoGanador;
 	}
 
+	/**
+	 * Método para obtener las plazas ocupadas de cada equipo
+	 * @return Array de int cuya primera posición son las plazas del primer equipo y la segunda las del segundo
+	 */
 	public int[] getPlazasOcupadas(){
 		int plazasOcupadasEquipo1 = 0;
 		int plazasOcupadasEquipo2 = 0;
@@ -139,6 +136,10 @@ public class Partido implements I_Comparable<Partido> {
 		return new int[] {plazasOcupadasEquipo1, plazasOcupadasEquipo2};
 	}
 
+	/**
+	 * Método para obtener las plazas disponibles totales entre los dos equipos de un partido
+	 * @return int con el resultado
+	 */
 	public int getPlazasDisponibles(){
 		int[] plazasOcupadas = getPlazasOcupadas();
 		int plazasDisponibles = 0;
