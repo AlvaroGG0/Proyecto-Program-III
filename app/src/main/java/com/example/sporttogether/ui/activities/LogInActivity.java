@@ -49,7 +49,6 @@ public class LogInActivity extends AppCompatActivity {
                     if (usuario.getFirstLogin()==1){
                         openFirstLoginActivity();
                     }else{
-                        Toast.makeText(getBaseContext(), R.string.welcome_user + " " + username.getText().toString() + "!", Toast.LENGTH_LONG).show();
                         openMatchesMainActivity();
                     }
                     LogInActivity.super.finish();
